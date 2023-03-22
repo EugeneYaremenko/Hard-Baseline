@@ -1,0 +1,17 @@
+.button {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  min-width: fit-content;
+  padding: 0;
+}
