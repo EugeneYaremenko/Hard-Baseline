@@ -4,14 +4,12 @@ import React, { useState } from 'react';
 import Loading from './loader/loading.block';
 import Button from './button/button';
 
-// consts
-import { EMAIL_VALIDATION_RULE } from '../const/auth-const';
-
 // types
 import { AuthFormType } from './types/auth-form-types';
 
 // styles
 import styles from './auth-form.module.css';
+import Input from '../03_input/input';
 
 /**
  * AuthForm - login to app form, consists of a login and password
@@ -53,27 +51,23 @@ export default function AuthForm(): JSX.Element {
       ) : (
         <form className={styles.authForm} onSubmit={handleSubmit}>
           <div className={styles.formFields}>
-            <input
+            <Input
               type="email"
               name="email"
-              pattern={EMAIL_VALIDATION_RULE}
+              variant="outline"
               required
               onChange={handleChange}
               value={inputValue.email}
-              title={"doesn't look like an email"}
-              className={styles.formInput}
+              validationTitle={"doesn't look like an email"}
               placeholder={'enter your email'}
             />
 
-            <input
+            <Input
               type="password"
               name="password"
-              minLength={4}
-              maxLength={20}
               required
               onChange={handleChange}
               value={inputValue.password}
-              className={styles.formInput}
               placeholder={'enter your password'}
             />
           </div>
