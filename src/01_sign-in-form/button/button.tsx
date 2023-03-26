@@ -2,6 +2,7 @@ import React from 'react';
 
 // types
 import type { GlobalButtonProps } from './button.types';
+
 // styles
 import styles from './button.module.css';
 

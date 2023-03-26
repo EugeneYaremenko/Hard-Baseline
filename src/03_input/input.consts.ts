@@ -1,6 +1,10 @@
 const DEFAULT_VALIDATION_RULE = '[A-Za-z0-9]+';
 const NO_VALIDATION_RULE = undefined;
 
+/**
+ * VALIDATION_RULES - Directory that includes all htm input types
+ * and validation rules of checking
+ */
 export const VALIDATION_RULES: Record<React.HTMLInputTypeAttribute, string | undefined> = {
   text: DEFAULT_VALIDATION_RULE,
   email: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',

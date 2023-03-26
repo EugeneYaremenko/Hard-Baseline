@@ -1,4 +1,4 @@
-import React, { memo, useId } from 'react';
+import React, { useId } from 'react';
 import classnames from 'classnames';
 
 // const
@@ -55,4 +55,5 @@ function Input(props: Props) {
   );
 }
 
-export default memo(Input);
+/** Default app input */
+export default React.memo(Input);

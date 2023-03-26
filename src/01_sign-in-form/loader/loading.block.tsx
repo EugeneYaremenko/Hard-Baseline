@@ -7,16 +7,12 @@ import IconLoadingDots from '../../icons/IconLoadingDots';
 // styles
 import styles from './loading.module.css';
 
-type Props = {
-  size?: string;
-  className?: string;
-  white?: boolean;
-  grayDark?: boolean;
-};
-
-export default function Loading({ className }: Props) {
+/**
+ * Loading - basic component that shows only load indicator
+ */
+export default function Loading() {
   return (
-    <span className={classNames(styles.loader, className)}>
+    <span className={classNames(styles.loader)}>
       <IconLoadingDots />
     </span>
   );
