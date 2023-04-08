@@ -1,5 +1,5 @@
 export function convertIdToStringInArr<T extends { id: string | number }>(arr: T[]) {
-  return arr.map<{ id: string }>(obj => ({
+  return arr.map<{ id: string; [keys: string]: any }>(obj => ({
     ...obj,
     id: obj.id.toString(),
   }));
