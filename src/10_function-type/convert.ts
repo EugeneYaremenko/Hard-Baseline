@@ -1,8 +1,11 @@
-export function convertIdToStringInArr<T extends { id: string | number }>(arr: T[]): T[] {
-  return arr.map(obj => ({ ...obj, id: obj.id.toString() }));
+export function convertIdToStringInArr<T extends { id: string | number }>(arr: T[]) {
+  return arr.map<{ id: string }>(obj => ({
+    ...obj,
+    id: obj.id.toString(),
+  }));
 }
 
-const testArr = [{ id: '1' }, { id: '2' }, { id: 3 }];
+const testArr = [{ id: '1', mail: 'test@mail.com' }, { id: '2' }, { id: 3 }];
 
 const testResult = convertIdToStringInArr(testArr);
 

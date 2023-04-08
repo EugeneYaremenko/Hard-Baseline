@@ -97,7 +97,7 @@ export const selectPalanetsNames = (palnetsList: PlanetsListType): string[] =>
 
 // reduce ts example
 export const calculatePalanetsPopulation = (palnetsList: PlanetsListType): number =>
-  palnetsList.reduce((acc: number, cur: PlanetType) => acc + Number(cur.population) || 0, 0);
+  palnetsList.reduce<number>((acc, cur) => acc + Number(cur.population) || 0, 0);
 
 // Object.keys ts example
 export const planetsKeys = (planet: PlanetType): PlanetType[keyof PlanetType] => {
