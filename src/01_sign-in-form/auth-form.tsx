@@ -42,40 +42,41 @@ export default function AuthForm(): JSX.Element {
     }));
   };
 
+  if (isLoading)
+    return (
+      <div className={styles.authFormLoader}>
+        <Loading />
+      </div>
+    );
+
   return (
     <div className={styles.authFormWrapper}>
-      {isLoading ? (
-        <div className={styles.authFormLoader}>
-          <Loading />
-        </div>
-      ) : (
-        <form className={styles.authForm} onSubmit={handleSubmit}>
-          <div className={styles.formFields}>
-            <Input
-              type="email"
-              name="email"
-              variant="outline"
-              required
-              onChange={handleChange}
-              value={inputValue.email}
-              validationTitle={"doesn't look like an email"}
-              placeholder={'enter your email'}
-            />
+      <form className={styles.authForm} onSubmit={handleSubmit}>
+        <div className={styles.formFields}>
+          <Input
+            type="email"
+            name="email"
+            variant="outline"
+            required
+            onChange={handleChange}
+            value={inputValue.email}
+            validationTitle={"doesn't look like an email"}
+            placeholder={'enter your email'}
+          />
 
-            <Input
-              type="password"
-              name="password"
-              required
-              onChange={handleChange}
-              value={inputValue.password}
-              placeholder={'enter your password'}
-            />
-          </div>
-          <Button className={styles.submitButton} type="submit">
-            Sign In
-          </Button>
-        </form>
-      )}
+          <Input
+            type="password"
+            name="password"
+            required
+            onChange={handleChange}
+            value={inputValue.password}
+            placeholder={'enter your password'}
+          />
+        </div>
+        <Button className={styles.submitButton} type="submit">
+          Sign In
+        </Button>
+      </form>
     </div>
   );
 }
