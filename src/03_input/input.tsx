@@ -1,55 +1,23 @@
-import React, { useId } from 'react';
+import React from 'react';
 import classnames from 'classnames';
-
-// const
-import { VALIDATION_RULES } from './input.consts';
 
 // styles
 import styles from './input.module.css';
 
 type Props = {
-  name: string;
-  value: string;
-  type: React.HTMLInputTypeAttribute;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  id?: string;
-  required?: boolean;
-  placeholder?: string;
-  validationRule?: string;
-  validationTitle?: string;
   inputRef?: React.Ref<HTMLInputElement>;
   variant?: 'default' | 'outline'; // only styles change
-};
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'>; // all input props without style & className
 
-function Input(props: Props) {
-  const {
-    id,
-    type,
-    name,
-    value,
-    inputRef,
-    placeholder,
-    validationRule,
-    onChange,
-    required = false,
-    variant = 'default',
-    validationTitle = 'invalid value :(',
-  } = props;
-
-  const inputId = useId();
+function Input(inputProps: Props) {
+  const { inputRef, variant = 'default', onChange, ...props } = inputProps;
 
   return (
     <input
-      name={name}
-      type={type}
-      value={value}
+      {...props}
       ref={inputRef}
-      id={id || inputId}
-      required={required}
       onChange={onChange}
-      title={validationTitle}
-      placeholder={placeholder}
-      pattern={validationRule || VALIDATION_RULES[type]}
       className={classnames(styles.input, styles[variant])}
     />
   );

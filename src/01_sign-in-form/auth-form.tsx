@@ -60,7 +60,7 @@ export default function AuthForm(): JSX.Element {
             required
             onChange={handleChange}
             value={inputValue.email}
-            validationTitle={"doesn't look like an email"}
+            title={"doesn't look like an email"}
             placeholder={'enter your email'}
           />
 
