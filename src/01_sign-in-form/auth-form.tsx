@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 // components
-import Loading from './loader/loading.block';
 import Button from './button/button';
 
 // types
@@ -42,18 +41,12 @@ export default function AuthForm(): JSX.Element {
     }));
   };
 
-  if (isLoading)
-    return (
-      <div className={styles.authFormLoader}>
-        <Loading />
-      </div>
-    );
-
   return (
     <div className={styles.authFormWrapper}>
       <form className={styles.authForm} onSubmit={handleSubmit}>
         <div className={styles.formFields}>
           <Input
+            disabled={isLoading}
             type="email"
             name="email"
             variant="outline"
@@ -65,6 +58,7 @@ export default function AuthForm(): JSX.Element {
           />
 
           <Input
+            disabled={isLoading}
             type="password"
             name="password"
             required
@@ -73,7 +67,7 @@ export default function AuthForm(): JSX.Element {
             placeholder={'enter your password'}
           />
         </div>
-        <Button className={styles.submitButton} type="submit">
+        <Button className={styles.submitButton} isLoading={isLoading} type="submit">
           Sign In
         </Button>
       </form>

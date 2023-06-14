@@ -1,20 +1,22 @@
-import { testObj_one, testObj_two } from './deepComparison.test';
+export function deepComparison(obj1: unknown, obj2: unknown): boolean {
+  if (
+    typeof obj1 !== 'object' ||
+    obj1 === null ||
+    Array.isArray(obj1) ||
+    typeof obj2 !== 'object' ||
+    obj2 === null ||
+    Array.isArray(obj2)
+  ) {
+    return false;
+  }
 
-// example 1
-export function deepEqual<Obj1, Obj2>(obj1: Obj1, obj2: Obj2) {
-  return JSON.stringify(obj1) === JSON.stringify(obj2);
-}
-
-// example 2
-Object.is(testObj_one, testObj_two);
-
-// example 2
-export function deepComparison(obj1: any, obj2: any): boolean {
   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
     return false;
   }
 
-  for (let key of Object.keys(obj1)) {
+  const objKeys = <T extends Record<string, any>>(obj: T): Array<keyof T> => Object.keys(obj);
+
+  for (let key of objKeys(obj1)) {
     const isObjects = typeof obj1[key] === 'object' && typeof obj2[key] === 'object';
 
     if (!obj2.hasOwnProperty(key)) {
