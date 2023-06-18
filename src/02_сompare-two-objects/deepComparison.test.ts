@@ -26,10 +26,32 @@ export const testObj_tree = {
   },
 };
 
-it('test 1', () => {
+export const testArray = [1, 2, 3];
+
+it('deepComparison: Equal objects', () => {
   expect(deepComparison(testObj_one, testObj_two)).toEqual(true);
 });
 
-it('test 2', () => {
+it('deepComparison: Not Equal Objects', () => {
   expect(deepComparison(testObj_one, testObj_tree)).toEqual(false);
+});
+
+it('deepComparison: Object and null', () => {
+  expect(deepComparison(testObj_one, null)).toEqual(false);
+});
+
+it('deepComparison: Object and empty Object', () => {
+  expect(deepComparison(testObj_one, {})).toEqual(false);
+});
+
+it('deepComparison: Object and Array', () => {
+  expect(deepComparison(testObj_one, testArray)).toEqual(false);
+});
+
+it('deepComparison: Object and Date', () => {
+  expect(deepComparison(testObj_one, new Date())).toEqual(false);
+});
+
+it('deepComparison: Object and 0', () => {
+  expect(deepComparison(testObj_one, 0)).toEqual(false);
 });
