@@ -1,8 +1,14 @@
-import React, { memo } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 
-// types
-import { ValidationType } from './input-wrapper.types';
+// state context
+import InputWrapperContext from './inputWrapperContext';
+
+// children components
+import Input from './input';
+import Label from './label';
+import Tip from './tip';
+import Icon from './icon';
 
 // styles
 import styles from './input-wrapper.module.css';
@@ -12,18 +18,26 @@ export type Props = {
   children: React.ReactNode;
   readOnly?: boolean;
   loading?: boolean;
+  isError?: boolean;
 };
 
 export default function InputWrapper(props: Props) {
-  const { wrapperClassName, children, readOnly, loading } = props;
+  const { wrapperClassName, children, readOnly, loading, isError = false } = props;
 
   return (
-    <div
-      className={classnames(styles.wrapper, wrapperClassName, {
-        [styles.wrapperReadOnly]: readOnly,
-      })}
-    >
-      {loading || children}
-    </div>
+    <InputWrapperContext.Provider value={{ isError }}>
+      <div
+        className={classnames(styles.wrapper, wrapperClassName, {
+          [styles.wrapperReadOnly]: readOnly,
+        })}
+      >
+        {loading || children}
+      </div>
+    </InputWrapperContext.Provider>
   );
 }
+
+InputWrapper.Input = Input;
+InputWrapper.Label = Label;
+InputWrapper.Tip = Tip;
+InputWrapper.Icon = Icon;
