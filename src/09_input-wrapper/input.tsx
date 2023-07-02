@@ -8,20 +8,22 @@ import { useInputWrapperContext } from './inputWrapperContext';
 import styles from './input-wrapper.module.css';
 
 type Props = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputRef?: React.Ref<HTMLInputElement>;
   variant?: 'default' | 'outline'; // only styles change
+  pattern?: RegExp | string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'style' | 'className'>; // all input props without style & className
 
 function Input(inputProps: Props) {
-  const { inputRef, variant = 'default', onChange, ...props } = inputProps;
+  const { inputRef, variant = 'default', pattern, ...props } = inputProps;
 
-  const { isError } = useInputWrapperContext();
+  const { isError, disabled, onChange } = useInputWrapperContext();
 
   return (
     <input
       {...props}
+      disabled={disabled}
       ref={inputRef}
+      pattern={pattern}
       onChange={onChange}
       className={classnames(styles.input, styles[variant], {
         [styles.inputError]: isError,

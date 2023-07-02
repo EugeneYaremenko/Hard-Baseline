@@ -14,30 +14,38 @@ import Icon from './icon';
 import styles from './input-wrapper.module.css';
 
 export type Props = {
-  wrapperClassName?: string;
-  children: React.ReactNode;
-  readOnly?: boolean;
-  loading?: boolean;
   isError?: boolean;
+  disabled?: boolean;
+  isLoading?: boolean;
+  wrapperClassName?: string;
+  children?: React.ReactNode;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => any;
 };
 
 export default function InputWrapper(props: Props) {
-  const { wrapperClassName, children, readOnly, loading, isError = false } = props;
+  const {
+    children,
+    wrapperClassName,
+    isError = false,
+    disabled = false,
+    isLoading = false,
+    onChange,
+  } = props;
 
   return (
-    <InputWrapperContext.Provider value={{ isError }}>
+    <InputWrapperContext.Provider value={{ isError, disabled, onChange }}>
       <div
         className={classnames(styles.wrapper, wrapperClassName, {
-          [styles.wrapperReadOnly]: readOnly,
+          [styles.wrapperReadOnly]: disabled,
         })}
       >
-        {loading || children}
+        {isLoading || children}
       </div>
     </InputWrapperContext.Provider>
   );
 }
 
-InputWrapper.Input = Input;
-InputWrapper.Label = Label;
 InputWrapper.Tip = Tip;
 InputWrapper.Icon = Icon;
+InputWrapper.Input = Input;
+InputWrapper.Label = Label;

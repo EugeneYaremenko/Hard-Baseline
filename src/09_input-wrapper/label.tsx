@@ -15,12 +15,13 @@ type Props = {
 function Label(props: Props) {
   const { id, text } = props;
 
-  const { isError } = useInputWrapperContext();
+  const { isError, disabled } = useInputWrapperContext();
 
   return (
     <label
       className={classNames(styles.label, {
         [styles.labelError]: isError,
+        [styles.labelDisabled]: disabled,
       })}
       htmlFor={id.toString()}
     >

@@ -1,6 +1,10 @@
 import { useContext, createContext } from 'react';
 
-const InputWrapperContext = createContext<{ isError: boolean } | null>(null);
+const InputWrapperContext = createContext<{
+  isError: boolean;
+  disabled: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => any;
+} | null>(null);
 
 export function useInputWrapperContext() {
   const context = useContext(InputWrapperContext);

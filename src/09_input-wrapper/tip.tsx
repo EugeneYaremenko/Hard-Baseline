@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 // state context
 import { useInputWrapperContext } from './inputWrapperContext';
@@ -13,9 +14,18 @@ type Props = {
 export function Tip(props: Props) {
   const { text } = props;
 
-  const { isError } = useInputWrapperContext();
+  const { isError, disabled } = useInputWrapperContext();
 
-  return <div className={styles.errorMessage}>{text}</div>;
+  return (
+    <div
+      className={classNames(styles.label, {
+        [styles.errorMessage]: isError,
+        [styles.tipDisabled]: disabled,
+      })}
+    >
+      {text}
+    </div>
+  );
 }
 
 /** tip for InputWrapper */
